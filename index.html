@@ -11,15 +11,39 @@
     <link rel="stylesheet" href="styles.css?v=x9a2b8">
 </head>
 <body>
-    <div class="slides-container">
-        <div class="slide slide-1">
-            <h1>Hello World</h1>
+    <div class="main-wrapper">
+        <div class="slides-container">
+            <div class="slide slide-1">
+                <h1>Hello World</h1>
+            </div>
+            <div class="slide slide-2">
+                <h1>I'm here!</h1>
+            </div>
         </div>
-        <div class="slide slide-2">
-            <h1>I'm here!</h1>
-        </div>
+        <div id="grid-container" class="grid-container"></div>
     </div>
   <script>
+    const foodItems = [
+      { icon: '🍎', name: 'Apple', desc: 'Fresh and crunchy' },
+      { icon: '🍕', name: 'Pizza', desc: 'Cheesy delight' },
+      { icon: '🍔', name: 'Burger', desc: 'Juicy and tasty' },
+      { icon: '🍣', name: 'Sushi', desc: 'Fresh seafood' },
+      { icon: '🌮', name: 'Taco', desc: 'Spicy mexican' },
+      { icon: '🍜', name: 'Ramen', desc: 'Hot noodle soup' }
+    ];
+
+    const grid = document.getElementById('grid-container');
+    foodItems.forEach(item => {
+      const box = document.createElement('div');
+      box.className = 'grid-item';
+      box.innerHTML = `
+        <div class="icon">${item.icon}</div>
+        <div class="name">${item.name}</div>
+        <div class="desc">${item.desc}</div>
+      `;
+      grid.appendChild(box);
+    });
+
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('./sw.js')
